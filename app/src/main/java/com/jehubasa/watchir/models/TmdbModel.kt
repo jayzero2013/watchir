@@ -5,16 +5,15 @@ import android.graphics.BitmapFactory
 import android.util.Log
 import com.jehubasa.watchir.dataClass.MostPopularMoviesData
 import com.jehubasa.watchir.dataClass.MovieDetailsData
+import com.jehubasa.watchir.dataClass.TopRatedMoviesData
 import com.jehubasa.watchir.interfaces.IMDBApiInterface
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
 
-class ImdbModel(
+class TmdbModel(
     private val apiKey: String = "9dfb139215df70a0a50ef2788710214a",
     baseUrl: String = "https://api.themoviedb.org/3/"
 ) {
@@ -29,6 +28,10 @@ class ImdbModel(
         .build()
 
     private val imdbApi = retrofit.create(IMDBApiInterface::class.java)
+
+    suspend fun getTopRatedMovies():TopRatedMoviesData{
+        return imdbApi.getTopRatedMovies(apiKey)
+    }
 
     suspend fun getMostPopularMovies(): MostPopularMoviesData {
         return imdbApi.getMostPopularMovies(apiKey)

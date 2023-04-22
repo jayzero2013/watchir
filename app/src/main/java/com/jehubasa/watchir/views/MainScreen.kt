@@ -1,12 +1,16 @@
 package com.jehubasa.watchir.views
 
-import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.runtime.Composable
-import com.jehubasa.watchir.viewModels.MostPopularMoviesViewModel
+import androidx.navigation.NavController
+import com.jehubasa.watchir.viewModels.MoviesViewModel
 
 @Composable
-fun MainScreen(mostPopularMoviesViewModel: MostPopularMoviesViewModel){
-    Column() {
-        MostPopular(mostPopularMoviesViewModel)
+fun MainScreen(moviesViewModel: MoviesViewModel, navController: NavController){
+    LazyColumn(){
+        item {
+            MostPopularCategory(moviesViewModel, navController = navController)
+            TrendingMoviesCategory(moviesViewModel = moviesViewModel, navController = navController)
+        }
     }
 }

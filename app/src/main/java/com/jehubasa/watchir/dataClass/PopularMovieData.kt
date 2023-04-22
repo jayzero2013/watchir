@@ -11,8 +11,9 @@ data class PopularMovieList(
 
 @Parcelize
 data class PopularMovieData(
+    var id : Int? = null,
     var title : String? = null,
     var poster : Bitmap? =null,
-    var genre : String? =null,
+    var voteAverage : String? =null,
     var movieType: String? = null
 ):Parcelable
